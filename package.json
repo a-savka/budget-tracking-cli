@@ -5,6 +5,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
+    "start:hw2": "node dist/calculation-demo.js",
     "dev": "tsc --watch"
   },
   "author": "Andrey Savka",
