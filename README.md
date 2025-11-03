@@ -13,6 +13,8 @@ npm install
 - `npm run build`: Компиляция TypeScript в JavaScript.
 - `npm run start`: Запуск приложения.
 - `npm run start:hw2`: Запуск ДЗ №2.
+- `npm run start:hw3`: Запуск ДЗ №3.
+- `npm run start:hw4`: Запуск ДЗ №4.
 - `npm run dev`: Запуск компилятора TypeScript в режиме отслеживания изменений.
 
 ## Использование
