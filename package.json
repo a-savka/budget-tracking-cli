@@ -9,6 +9,7 @@
     "start:hw3": "node dist/functions.js",
     "start:hw4": "node dist/index.js",
     "start:hw6": "node dist/generics.js",
+    "start:hw7": "node dist/index.js",
     "dev": "tsc --watch"
   },
   "author": "Andrey Savka",

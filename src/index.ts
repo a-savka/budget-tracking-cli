@@ -1,5 +1,5 @@
-import { Account, AccountManager } from "./classes";
-import { IAccountManager, IAccount, ISummary, ITransaction } from "./types";
+import { Account } from "./classes/Account";
+import { AccountManager } from "./classes/AccountManager";
 
 
 function main() {
