@@ -1,7 +1,7 @@
 import { TransactionType } from "./TransactionType";
 
 export interface ITransaction {
-    id: number;
+    id: string;
     amount: number;
     type: TransactionType;
     date: string;

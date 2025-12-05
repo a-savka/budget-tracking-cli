@@ -1,9 +1,9 @@
 import { ITransaction } from "./ITransaction";
 
 export interface IAccount {
-    id: number;
+    id: string;
     name: string;
     addTransaction: (transaction: ITransaction) => void;
-    removeTransactionById: (tracsactionId: number) => void;
+    removeTransactionById: (tracsactionId: string) => void;
     getTransactions: () => ITransaction[];
 }

@@ -2,10 +2,13 @@
 
   "compilerOptions": {
     "target": "es2020",
-    "module": "commonjs",
+    "module": "ESNext",
     "rootDir": "./src",
     "outDir": "./dist",
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "paths": {
+        "utils": ["./src/lib/budget-utils.js"]
+    }
   }
 }

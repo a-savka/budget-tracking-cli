@@ -3,8 +3,8 @@ import { ISummary } from "./ISummary";
 
 export interface IAccountManager {
     addAccount: (account: IAccount) => void;
-    removeAccountById: (accountId: number) => void;
+    removeAccountById: (accountId: string) => void;
     getAccounts: () => IAccount[];
-    getAccountById: (accountId: number) => IAccount | undefined;
-    getSummary: (accountId: number) => ISummary;
+    getAccountById: (accountId: string) => IAccount | undefined;
+    getSummary: (accountId: string) => ISummary;
 }

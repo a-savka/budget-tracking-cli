@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import { IAccount } from "../interfaces/IAccount";
 import { ISummary } from "../interfaces/ISummary";
 import { ITransaction } from "../interfaces/ITransaction";
@@ -6,14 +7,12 @@ import { Transaction } from "./Transaction";
 
 export class Account implements IAccount, ISummary {
 
-    private static nextId: number = 1;
-
-    public id: number;
+    public readonly id: string;
     public name: string;
     public transactions: Transaction[];
 
     constructor(name: string) {
-        this.id = Account.nextId++;
+        this.id = uuidv4();
         this.name = name;
         this.transactions = [];
     }
@@ -39,7 +38,7 @@ export class Account implements IAccount, ISummary {
         this.transactions.push(transaction);
     };
 
-    public removeTransactionById(tracsactionId: number) {
+    public removeTransactionById(tracsactionId: string) {
         this.transactions = this.transactions.filter(transaction => {
             return transaction.id !== tracsactionId;
         });

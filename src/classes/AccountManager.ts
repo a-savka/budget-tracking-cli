@@ -29,13 +29,13 @@ export class AccountManager implements IAccountManager, ISummary {
         this.accounts.push(account as Account);
     }
 
-    public removeAccountById(accountId: number) {
+    public removeAccountById(accountId: string) {
         this.accounts = this.accounts.filter(account => {
             return account.id !== accountId;
         });
     }
 
-    public getAccountById(accountId: number): Account | undefined {
+    public getAccountById(accountId: string): Account | undefined {
         return this.accounts.find(account => {
             return account.id === accountId;
         });
