@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import { IAccount } from "../interfaces/IAccount";
+import { AccountUpdate, IAccount } from "../interfaces/IAccount";
 import { ISummary } from "../interfaces/ISummary";
 import { ITransaction } from "../interfaces/ITransaction";
 import { TransactionType } from "../interfaces/TransactionType";
@@ -35,7 +35,7 @@ export class Account implements IAccount, ISummary {
     }
 
     public addTransaction(transaction: ITransaction) {
-        this.transactions.push(transaction);
+        this.transactions.push(transaction as Transaction);
     };
 
     public removeTransactionById(tracsactionId: string) {
@@ -67,6 +67,12 @@ export class Account implements IAccount, ISummary {
             return `Аккаунт ${this.name} пустой`;
         } else {
             return `Аккаунт ${this.name} содержит ${this.transactions.length} транзакций, баланс ${this.balance}`;
+        }
+    }
+
+    public update(update: AccountUpdate) {
+        if (update.name) {
+            this.name = update.name;
         }
     }
 

@@ -7,3 +7,7 @@ export interface IAccount {
     removeTransactionById: (tracsactionId: string) => void;
     getTransactions: () => ITransaction[];
 }
+
+export type AccountUpdate = Partial<IAccount>;
+
+export type AccountInfo = Pick<IAccount, 'id' | 'name'>;

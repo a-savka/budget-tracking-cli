@@ -54,6 +54,17 @@ function main() {
         console.log(tr.toString());
     });
 
+    acc.getTransactions().forEach(tr => {
+        tr.update({
+            amount: 99999,
+            description: 'Updated'
+        });
+    });
+
+    console.log('\nТранзакции после изменения:');
+    acc.getTransactions().forEach(tr => {
+        console.log(tr.toString());
+    });
 }
 
 main();
