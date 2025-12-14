@@ -1,8 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
+import { writeFile } from 'fs/promises';
 import { AccountUpdate, IAccount } from "../interfaces/IAccount";
 import { ISummary } from "../interfaces/ISummary";
 import { ITransaction } from "../interfaces/ITransaction";
 import { TransactionType } from "../interfaces/TransactionType";
+import { escapeCsvValue } from '../utils/escapeCsvValue';
 import { Transaction } from "./Transaction";
 
 export class Account implements IAccount, ISummary {
@@ -57,8 +59,8 @@ export class Account implements IAccount, ISummary {
     }
 
     public getSummaryString(): string {
-        return `Имя Аккаунта: ${this.name}\n` +
-            `Баланс: ${this.balance}\n` +
+        return `Имя Аккаунта: ${this.name}\n` + 
+            `Баланс: ${this.balance}\n` + 
             `Транзакций: ${this.transactions.length}`;
     }
 
@@ -73,6 +75,27 @@ export class Account implements IAccount, ISummary {
     public update(update: AccountUpdate) {
         if (update.name) {
             this.name = update.name;
+        }
+    }
+
+    public async exportTransactionsToCSV(filename: string): Promise<void> {
+        const headers = 'id,amount,type,date,description';
+        const rows = this.transactions.map(tx =>
+            [
+                escapeCsvValue(tx.id),
+                escapeCsvValue(tx.amount),
+                escapeCsvValue(tx.type),
+                escapeCsvValue(tx.date),
+                escapeCsvValue(tx.description!)
+            ].join(',')
+        );
+
+        const csvContent = [headers, ...rows].join('\n');
+
+        try {
+            await writeFile(filename, csvContent);
+        } catch (error) {
+            throw new Error(`Ошибка записи в файл ${filename}: ${error}`);
         }
     }
 
