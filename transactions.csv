@@ -1,0 +1,4 @@
+id,amount,type,date,description
+4aa52439-2ee1-4168-9b80-0aecf2bbc7c3,1000,income,2025-12-21T19:27:04.709Z,Initial deposit
+27685343-6e7d-4ae5-a9da-9c5ebc3f412e,50,expense,2025-12-21T19:27:04.709Z,Coffee
+966489ef-1dff-46aa-a622-8a2aadb5ff5e,120,expense,2025-12-21T19:27:04.709Z,"Groceries, milk"

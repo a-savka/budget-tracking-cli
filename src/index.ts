@@ -2,6 +2,7 @@ import { Account } from "./classes/Account";
 import { AccountManager } from "./classes/AccountManager";
 import { Transaction } from "./classes/Transaction";
 import { readFile } from "fs/promises";
+import { IsIncome, TransactionFieldType } from "./interfaces/ITransaction";
 
 
 function main() {
@@ -107,6 +108,52 @@ async function testExport() {
     }
 }
 
+type AmountType = TransactionFieldType<'amount'>;
+type CheckIncome1= IsIncome<{type: 'income', amount: AmountType}>;
+type CheckIncome2= IsIncome<{type: 'expense', amount: AmountType}>;
+
+function testTypes() {
+
+    const account = new Account("Test Account");
+
+    account.addTransaction(new Transaction(
+        1000,
+        "income",
+        new Date().toISOString(),
+        "Initial deposit"
+    ));
+    account.addTransaction(new Transaction(
+        50,
+        "expense",
+        new Date().toISOString(),
+        "Coffee"
+    ));
+
+
+    const transactions = account.getTransactions();
+    const total = transactions.map(t => t.amount).reduce((sum: number, amount: AmountType) => {
+        return sum + amount;
+    }, 0);
+
+    console.log('\n\nТестирование типов');
+    console.log(`Total: ${total}`);
+
+    transactions.filter(t => (t.type === 'income') as CheckIncome1).map(t => {
+        console.log(`income transaction: ${t}`);
+    });
+
+    transactions.filter(t => (t.type === 'expense') as CheckIncome2).map(t => {
+        console.log(`esxpense transaction: ${t}`);
+    });
+
+}
+
+
 main();
 console.log();
-testExport();
+testExport().then(
+    () => {
+        testTypes();
+    }
+);
+
